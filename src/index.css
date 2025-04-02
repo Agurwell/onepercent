@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-one-dark font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+
+  p {
+    @apply mb-4 text-base md:text-lg;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-one-blue ring-offset-2;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-one-dark text-white px-6 py-3 rounded-md font-bold transition-all hover:bg-black hover:scale-105 inline-block disabled:opacity-70 disabled:hover:scale-100 disabled:cursor-not-allowed;
+  }
+  
+  .btn-secondary {
+    @apply border-2 border-one-dark text-one-dark px-6 py-3 rounded-md font-bold transition-all hover:bg-one-dark hover:text-white hover:scale-105 inline-block;
+  }
+  
+  .btn-accent {
+    @apply bg-one-blue text-one-dark px-6 py-3 rounded-md font-bold transition-all hover:scale-105 inline-block;
+  }
+
+  .container-custom {
+    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .heading-xl {
+    @apply text-4xl md:text-5xl lg:text-6xl font-black leading-tight;
+  }
+
+  .heading-lg {
+    @apply text-3xl md:text-4xl font-bold leading-tight;
+  }
+
+  .heading-md {
+    @apply text-2xl md:text-3xl font-bold leading-tight;
+  }
+
+  .heading-sm {
+    @apply text-xl md:text-2xl font-bold leading-tight;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-one-blue to-one-green bg-clip-text text-transparent animate-gradient-x;
+  }
+}
+
+/* Fix iOS touch highlight */
+@media (hover: none) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Fix for mobile viewport height issues */
+html, body {
+  height: -webkit-fill-available;
+}
+
+/* Improve mobile form elements */
+input, 
+textarea, 
+button {
+  font-size: 16px !important; /* Prevents iOS zoom on focus */
+}
+
+/* Improve animation performance */
+.animate-gradient-x {
+  will-change: background-position;
+}
+
+/* Ensure images handle properly */
+img {
+  max-width: 100%;
+  display: block;
+}

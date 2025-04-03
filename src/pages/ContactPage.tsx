@@ -60,19 +60,33 @@ const ContactPage: React.FC = () => {
     
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/contact-form`, {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({
+    ...formData,
+    captchaToken: token
+  })
+})
+  .then(async (res) => {
+    const result = await res.json();
+    if (res.ok) {
       setIsSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        business: '',
-        message: '',
-      });
-    }, 1500);
-  };
+      setFormData({ name: '', email: '', phone: '', business: '', message: '' });
+    } else {
+      console.error('Submission error:', result);
+      alert('Error submitting the form. Please try again.');
+    }
+  })
+  .catch((err) => {
+    console.error('Unexpected error:', err);
+    alert('Something went wrong. Please try again later.');
+  })
+  .finally(() => {
+    setIsSubmitting(false);
+  });
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },

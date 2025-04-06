@@ -45,45 +45,47 @@ const Navbar: React.FC = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'
-      }`}
-    >
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    isOpen ? 'bg-one-dark py-3 shadow-sm' :
+    scrolled ? 'bg-one-dark/95 backdrop-blur-md shadow-sm py-3' :
+    'bg-one-dark/95 py-5'
+  }`}
+>
       <div className="container-custom flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
           <Zap size={28} className="text-one-blue" />
-          <span className="font-black text-xl md:text-2xl">ONE</span>
+          <span className="font-black text-xl md:text-2xl text-white">ONE</span>
         </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 items-center">
           <Link 
             to="/" 
-            className={`font-medium transition-colors hover:text-one-blue ${location.pathname === '/' ? 'text-one-blue' : ''}`}
+            className={`font-medium transition-colors hover:text-one-blue ${location.pathname === '/' ? 'text-one-blue' : 'text-white'}`}
           >
             Home
           </Link>
           <Link 
             to="/services" 
-            className={`font-medium transition-colors hover:text-one-blue ${location.pathname === '/services' ? 'text-one-blue' : ''}`}
+            className={`font-medium transition-colors hover:text-one-blue ${location.pathname === '/services' ? 'text-one-blue' : 'text-white'}`}
           >
             Services
           </Link>
           <Link 
             to="/about" 
-            className={`font-medium transition-colors hover:text-one-blue ${location.pathname === '/about' ? 'text-one-blue' : ''}`}
+            className={`font-medium transition-colors hover:text-one-blue ${location.pathname === '/about' ? 'text-one-blue' : 'text-white'}`}
           >
             About
           </Link>
           <Link 
             to="/testimonials" 
-            className={`font-medium transition-colors hover:text-one-blue ${location.pathname === '/testimonials' ? 'text-one-blue' : ''}`}
+            className={`font-medium transition-colors hover:text-one-blue ${location.pathname === '/testimonials' ? 'text-one-blue' : 'text-white'}`}
           >
             Testimonials
           </Link>
           <Link 
             to="/faq" 
-            className={`font-medium transition-colors hover:text-one-blue ${location.pathname === '/faq' ? 'text-one-blue' : ''}`}
+            className={`font-medium transition-colors hover:text-one-blue ${location.pathname === '/faq' ? 'text-one-blue' : 'text-white'}`}
           >
             FAQ + Stats
           </Link>
@@ -97,7 +99,7 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-one-dark focus:outline-none"
+          className="md:hidden text-white focus:outline-none"
           onClick={toggleMenu}
           aria-label="Toggle navigation menu"
           aria-expanded={isOpen}
@@ -108,46 +110,45 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Navigation */}
       <div 
-        className={`fixed inset-0 bg-white z-40 transition-transform duration-300 transform ${
-          isOpen ? 'translate-x-0' : 'translate-x-full'
-        } md:hidden`}
-        style={{ top: '60px' }}
-        aria-hidden={!isOpen}
-      >
+  className={`fixed left-0 right-0 top-[60px] bottom-0 bg-gradient-to-br from-one-dark via-black to-one-dark/90 z-40 transition-transform duration-300 transform ${
+    isOpen ? 'translate-x-0' : 'translate-x-full'
+  } md:hidden`}
+  aria-hidden={!isOpen}
+>
         <nav className="flex flex-col p-6 space-y-6">
           <Link 
             to="/" 
-            className={`text-xl font-bold ${location.pathname === '/' ? 'text-one-blue' : ''}`}
+            className={`text-xl font-bold ${location.pathname === '/' ? 'text-one-blue' : 'text-white'}`}
           >
             Home
           </Link>
           <Link 
             to="/services" 
-            className={`text-xl font-bold ${location.pathname === '/services' ? 'text-one-blue' : ''}`}
+            className={`text-xl font-bold ${location.pathname === '/services' ? 'text-one-blue' : 'text-white'}`}
           >
             Services
           </Link>
           <Link 
             to="/about" 
-            className={`text-xl font-bold ${location.pathname === '/about' ? 'text-one-blue' : ''}`}
+            className={`text-xl font-bold ${location.pathname === '/about' ? 'text-one-blue' : 'text-white'}`}
           >
             About
           </Link>
           <Link 
             to="/testimonials" 
-            className={`text-xl font-bold ${location.pathname === '/testimonials' ? 'text-one-blue' : ''}`}
+            className={`text-xl font-bold ${location.pathname === '/testimonials' ? 'text-one-blue' : 'text-white'}`}
           >
             Testimonials
           </Link>
           <Link 
             to="/faq" 
-            className={`text-xl font-bold ${location.pathname === '/faq' ? 'text-one-blue' : ''}`}
+            className={`text-xl font-bold ${location.pathname === '/faq' ? 'text-one-blue' : 'text-white'}`}
           >
             FAQ + Stats
           </Link>
           <Link 
             to="/contact" 
-            className="btn-primary w-full text-center mt-4"
+            className="btn-accent w-full text-center mt-4"
           >
             Let's Talk
           </Link>

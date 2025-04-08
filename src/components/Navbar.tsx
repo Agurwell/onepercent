@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowUpRight, Zap } from 'lucide-react';
+import { ArrowUpRight,  } from 'lucide-react';
+import GradientIcon from './GradientIcon';
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -45,18 +46,28 @@ const Navbar: React.FC = () => {
 
   return (
     <header 
-  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-    isOpen ? 'bg-one-dark py-3 shadow-sm' :
-    scrolled ? 'bg-one-dark/95 backdrop-blur-md shadow-sm py-3' :
-    'bg-one-dark/95 py-5'
-  }`}
+    className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      isOpen ? 'bg-one-dark py-5 shadow-sm' :
+      scrolled ? 'bg-one-dark/95 backdrop-blur-md shadow-sm py-3' :
+      'bg-one-dark/95 py-3'
+    }`}
 >
-      <div className="container-custom flex justify-between items-center">
-        <Link to="/" className="flex items-center space-x-2">
-          <Zap size={28} className="text-one-blue" />
-          <span className="font-black text-xl md:text-2xl text-white">ONE</span>
-        </Link>
-
+<div className="container-custom flex justify-between items-center py-1 md:py-2">
+  <Link
+    to="/"
+    className="flex items-center gap-1.5 transform transition-all duration-300"
+  >
+    <img
+      src="/images/1.png"
+      alt="ONE Logo"
+      className={`h-12 md:h-14 object-contain transition-transform duration-300 ${
+        scrolled ? 'scale-90' : 'scale-100'
+      } neon-glow`}
+    />
+   <span className="font-black text-3xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 animated-gradient">
+  ONE
+</span>
+  </Link>
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 items-center">
           <Link 
@@ -99,13 +110,17 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-white focus:outline-none"
-          onClick={toggleMenu}
-          aria-label="Toggle navigation menu"
-          aria-expanded={isOpen}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+  className="md:hidden focus:outline-none"
+  onClick={toggleMenu}
+  aria-label="Toggle navigation menu"
+  aria-expanded={isOpen}
+>
+  {isOpen ? (
+    <GradientIcon icon="x" size={28} />
+  ) : (
+    <GradientIcon icon="menu" size={28} />
+  )}
+</button>
       </div>
 
       {/* Mobile Navigation */}

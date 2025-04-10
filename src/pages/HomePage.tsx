@@ -27,38 +27,37 @@ const HomePage: React.FC = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 lg:pt-48 lg:pb-24">
-        <div className="container-custom">
-          <motion.div 
-            className="max-w-4xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-          >
-            <h1 className="heading-xl mb-6">
-              Your <span className="gradient-text">One</span> move to scale everything.
-            </h1>
-            <p className="text-xl mb-8 text-gray-700">
-              Website. Marketing. Systems. Strategy. Results. No fluff.
-            </p>
-            <p className="text-lg mb-10 max-w-2xl mx-auto">
-              We partner with small, locally owned service businesses to modernize, optimize, and accelerate growth. 
-              Get the tools and strategies you need for real momentum and freedom.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/contact" className="btn-primary">
-                Let's build something better
-              </Link>
-              <a 
-                href="#services" 
-                className="btn-secondary flex items-center justify-center gap-1"
-              >
-                Explore Services <ArrowDown size={16} />
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <section
+  className="pt-32 pb-16 md:pt-40 md:pb-20 relative bg-black"
+  style={{
+    backgroundImage: "url('/images/ong.png')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+  }}
+>
+  {/* Dark overlay with blur */}
+  <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0" />
+
+  <div className="relative z-10 container-custom">
+    <motion.div 
+      className="max-w-4xl mx-auto text-center"
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+      }}
+    >
+      <h1 className="heading-xl mb-6 text-white">
+        About <span className="gradient-text">One</span>
+      </h1>
+      <p className="text-xl mb-8 text-gray-300 max-w-3xl mx-auto">
+        No certifications, no corporate talk. Just strategy, systems, and execution that work.
+      </p>
+    </motion.div>
+  </div>
+</section>
 
       {/* Services Section */}
       <section id="services" className="py-20 bg-one-light">

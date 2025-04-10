@@ -47,11 +47,13 @@ const Navbar: React.FC = () => {
   return (
     <header 
     className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isOpen ? 'bg-one-dark py-5 shadow-sm' :
-      scrolled ? 'bg-one-dark/95 backdrop-blur-md shadow-sm py-3' :
-      'bg-one-dark/95 py-3'
+      isOpen
+        ? 'bg-gradient-to-r from-slate-800 via-purple-700 to-pink-500'
+        : scrolled
+          ? 'bg-gradient-to-r from-slate-800 via-purple-700 to-pink-500 backdrop-blur-md shadow-sm py-3'
+          : 'bg-gradient-to-r from-slate-800 via-purple-700 to-pink-500 py-5'
     }`}
->
+  >
 <div className="container-custom flex justify-between items-center py-1 md:py-2">
   <Link
     to="/"

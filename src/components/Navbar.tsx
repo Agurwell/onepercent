@@ -67,7 +67,7 @@ const Navbar: React.FC = () => {
       } neon-glow`}
     />
    <span className="font-black text-3xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 animated-gradient">
-  ONE
+  One
 </span>
   </Link>
         {/* Desktop Navigation */}

@@ -1,12 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import CTASection from '../components/CTASection';
+import { Link } from 'react-router-dom';
 
 const AboutPage: React.FC = () => {
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.6 }
     }
@@ -25,10 +26,19 @@ const AboutPage: React.FC = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-one-light">
-        <div className="container-custom">
-          <motion.div 
-            className="max-w-4xl mx-auto text-center"
+      <section
+        className="pt-32 pb-16 md:pt-40 md:pb-20 relative bg-black text-white"
+        style={{
+          backgroundImage: "url('/images/oneland.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-transparent z-0" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-t from-black/60 to-transparent z-0" />
+        <div className="relative z-10 container-custom text-center">
+          <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeIn}
@@ -36,7 +46,7 @@ const AboutPage: React.FC = () => {
             <h1 className="heading-xl mb-6">
               About <span className="gradient-text">One</span>
             </h1>
-            <p className="text-xl mb-8 text-gray-700 max-w-3xl mx-auto">
+            <p className="text-xl mb-8 text-white/80 max-w-3xl mx-auto">
               No certifications, no corporate talk. Just strategy, systems, and execution that work.
             </p>
           </motion.div>
@@ -44,24 +54,25 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Founder Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-one-dark text-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
+              className="bg-gradient-to-br from-purple-700/30 to-pink-500/30 p-8 rounded-xl ring-1 ring-white/10"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeIn}
             >
-              <h2 className="heading-lg mb-6">Meet Adam Gurwell</h2>
+              <h2 className="heading-lg mb-6">Meet Adam </h2>
               <p className="text-lg mb-6">
-                Adam founded One with a simple mission: give small business owners the edge they've been missing. 
-                After years of watching talented entrepreneurs struggle with outdated systems and complicated marketing advice, 
+                Adam founded One with a simple mission: give small business owners the edge they've been missing.
+                After years of watching talented entrepreneurs struggle with outdated systems and complicated marketing advice,
                 he decided to build something different.
               </p>
               <p className="text-lg mb-6">
-                One exists to give small business owners the edge they've been missing. No certifications, no corporate talk. 
-                Just strategy, systems, and execution that work. We're obsessed with results and helping people break out—into 
+                One exists to give small business owners the edge they've been missing. No certifications, no corporate talk.
+                Just strategy, systems, and execution that work. We're obsessed with results and helping people break out—into
                 more freedom, more revenue, more time.
               </p>
               <p className="text-lg">
@@ -75,9 +86,9 @@ const AboutPage: React.FC = () => {
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeIn}
             >
-              <img 
-                src="https://i.imgur.com/KpM8SFB.png" 
-                alt="Adam Gurwell, founder of One" 
+              <img
+                src="/images/me2.png"
+                alt="Adam Gurwell, founder of One"
                 className="w-full h-full object-cover"
               />
             </motion.div>
@@ -101,34 +112,34 @@ const AboutPage: React.FC = () => {
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={stagger}
           >
-            <ValueCard 
+            <ValueCard
               title="Personal Growth"
               description="We believe your business should grow with you, not at the expense of you. Everything we do aims to create personal and professional freedom."
             />
-            <ValueCard 
+            <ValueCard
               title="Freedom Through Systems"
               description="True freedom comes from having the right systems in place. We build processes that work for you, not the other way around."
             />
-            <ValueCard 
+            <ValueCard
               title="Clarity Over Credentials"
               description="We value clear thinking and practical solutions over fancy certificates and jargon. Results speak louder than credentials."
             />
-            <ValueCard 
+            <ValueCard
               title="Strategy Over Fluff"
               description="No pointless meetings or vanity metrics. We focus on what actually moves the needle for your business."
             />
-            <ValueCard 
+            <ValueCard
               title="Relentless Momentum"
               description="Growth isn't about quick wins—it's about consistent progress. We build momentum that carries your business forward."
             />
-            <ValueCard 
+            <ValueCard
               title="Aggressive Accountability"
               description="We hold ourselves and our clients to high standards. Accountability is how progress happens."
             />
@@ -137,7 +148,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Mission Section */}
-      <section className="py-20 bg-one-light">
+      <section className="py-20 bg-one-dark text-white">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -147,13 +158,14 @@ const AboutPage: React.FC = () => {
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeIn}
             >
-              <img 
-                src="https://i.imgur.com/7ozxzyl.jpeg" 
-                alt="Team collaborating on business growth strategy" 
+              <img
+                src="/images/sweetdreams.jpg"
+                alt="Team collaborating on business growth strategy"
                 className="w-full h-full object-cover"
               />
             </motion.div>
             <motion.div
+              className="bg-gradient-to-br from-purple-700/30 to-pink-500/30 p-8 rounded-xl ring-1 ring-white/10"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
@@ -161,16 +173,16 @@ const AboutPage: React.FC = () => {
             >
               <h2 className="heading-lg mb-6">Our Mission</h2>
               <p className="text-lg mb-6">
-                We're on a mission to help small, locally owned service businesses not just survive, but thrive. 
-                We believe these businesses are the backbone of communities, and they deserve access to the same 
+                We're on a mission to help small, locally owned service businesses not just survive, but thrive.
+                We believe these businesses are the backbone of communities, and they deserve access to the same
                 quality of marketing, technology, and strategy as the big corporations.
               </p>
               <p className="text-lg mb-6">
-                Every day, we work to level the playing field by bringing cutting-edge tools and strategies 
+                Every day, we work to level the playing field by bringing cutting-edge tools and strategies
                 to businesses that might otherwise be left behind in the digital economy.
               </p>
               <p className="text-lg">
-                Success for us means our clients gain more freedom, more revenue, and more clarity through 
+                Success for us means our clients gain more freedom, more revenue, and more clarity through
                 partnering with One.
               </p>
             </motion.div>
@@ -179,10 +191,20 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <CTASection 
-        title="Ready to work with a partner who gets it?"
-        subtitle="Let's cut through the noise and build something better together."
+      <CTASection
+        title="Ready to transform your business?"
+        subtitle="Let's talk about how our services can be tailored to your specific needs and goals."
       />
+
+      {/* Sticky CTA */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <Link
+          to="/contact"
+          className="bg-one-blue hover:bg-one-blue/80 text-white text-sm font-semibold px-5 py-3 rounded-full shadow-lg transition-all"
+        >
+          Receive a Free Website Audit
+        </Link>
+      </div>
     </>
   );
 };
@@ -194,18 +216,18 @@ interface ValueCardProps {
 
 const ValueCard: React.FC<ValueCardProps> = ({ title, description }) => {
   return (
-    <motion.div 
-      className="bg-white/10 p-8 rounded-xl backdrop-blur-sm"
+    <motion.div
+      className="bg-gradient-to-br from-purple-700/30 to-pink-500/30 text-white p-8 rounded-xl shadow-lg ring-1 ring-white/10"
       variants={{
         hidden: { opacity: 0, y: 20 },
-        visible: { 
-          opacity: 1, 
+        visible: {
+          opacity: 1,
           y: 0,
           transition: { duration: 0.3 }
         }
       }}
     >
-      <h3 className="text-xl font-bold mb-4 text-one-blue">{title}</h3>
+      <h3 className="text-xl font-bold mb-4 text-white">{title}</h3>
       <p className="text-white/80">{description}</p>
     </motion.div>
   );

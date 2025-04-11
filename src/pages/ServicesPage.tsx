@@ -18,7 +18,6 @@ interface ServiceSectionProps {
   description: string;
   details: string[];
   image: string;
-  reverse: boolean;
 }
 
 const ServicesPage: React.FC = () => {
@@ -27,52 +26,14 @@ const ServicesPage: React.FC = () => {
     title,
     description,
     details,
-    image,
-    reverse
+    image
   }) => {
     return (
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-one-dark text-white">
         <div className="container-custom">
-          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${reverse ? 'lg:flex-row-reverse' : ''}`}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-100px' }}
-              variants={{
-                hidden: { opacity: 0, x: reverse ? 50 : -50 },
-                visible: {
-                  opacity: 1,
-                  x: 0,
-                  transition: { duration: 0.6 }
-                }
-              }}
-            >
-              <div className="mb-4">{icon}</div>
-              <h2 className="heading-lg mb-4">{title}</h2>
-              <p className="text-xl mb-6 text-gray-700">{description}</p>
-              <ul className="space-y-3 mb-8">
-                {details.map((detail, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="bg-one-green/20 rounded-full p-1 mr-3 mt-1">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-one-dark" viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                          fillRule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
-                    <span>{detail}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link to="/contact" className="inline-flex items-center font-bold hover:text-one-blue transition-colors">
-                Discuss your project <ArrowRight size={16} className="ml-2" />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              className={`rounded-xl overflow-hidden h-[400px] lg:h-[500px] ${reverse ? 'lg:order-first' : 'order-first lg:order-last'}`}
+              className="rounded-xl overflow-hidden h-[400px] lg:h-[500px] order-first"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-100px' }}
@@ -91,6 +52,44 @@ const ServicesPage: React.FC = () => {
                 className="w-full h-full object-cover rounded-2xl shadow-lg"
                 loading="lazy"
               />
+            </motion.div>
+
+            <motion.div
+              className="bg-gradient-to-br from-purple-700/30 to-pink-500/30 p-6 rounded-xl shadow-lg ring-1 ring-white/10"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
+              variants={{
+                hidden: { opacity: 0, x: -50 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.6 }
+                }
+              }}
+            >
+              <div className="mb-4">{icon}</div>
+              <h2 className="heading-lg mb-4 text-white">{title}</h2>
+              <p className="text-xl mb-6 text-white/80">{description}</p>
+              <ul className="space-y-3 mb-4">
+                {details.map((detail, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="bg-one-green/20 rounded-full p-1 mr-3 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link to="/contact" className="inline-flex items-center font-bold hover:text-one-blue transition-colors">
+                Discuss your project <ArrowRight size={16} className="ml-2" />
+              </Link>
             </motion.div>
           </div>
         </div>
@@ -112,7 +111,6 @@ const ServicesPage: React.FC = () => {
           "Ongoing maintenance and support to keep your digital presence running smoothly"
         ]}
         image="/images/servicecenter.jpg"
-        reverse={false}
       />
 
       <ServiceSection
@@ -127,7 +125,6 @@ const ServicesPage: React.FC = () => {
           "Regular reporting that shows real progress, not vanity metrics"
         ]}
         image="/images/pinknpurpphone.jpg"
-        reverse={true}
       />
 
       <ServiceSection
@@ -142,7 +139,6 @@ const ServicesPage: React.FC = () => {
           "Regular optimization based on performance data, not guesswork"
         ]}
         image="/images/pinkmonitor.jpg"
-        reverse={false}
       />
 
       <ServiceSection
@@ -157,7 +153,6 @@ const ServicesPage: React.FC = () => {
           "Google Analytics setup and monitoring to track real-world results"
         ]}
         image="/images/nothingtoseehere..jpg"
-        reverse={true}
       />
 
       <ServiceSection
@@ -172,7 +167,6 @@ const ServicesPage: React.FC = () => {
           "Custom automation solutions tailored to your specific business needs"
         ]}
         image="/images/gradkey.jpg"
-        reverse={false}
       />
 
       <ServiceSection
@@ -187,13 +181,22 @@ const ServicesPage: React.FC = () => {
           "Accountability and support to ensure you execute on your vision"
         ]}
         image="/images/greenpurpmeet.jpg"
-        reverse={true}
       />
 
-      <CTASection
+<CTASection
         title="Ready to transform your business?"
         subtitle="Let's talk about how our services can be tailored to your specific needs and goals."
       />
+
+      {/* Sticky CTA */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <Link
+          to="/contact"
+          className="bg-one-blue hover:bg-one-blue/80 text-white text-sm font-semibold px-5 py-3 rounded-full shadow-lg transition-all"
+        >
+          Receive a Free Website Audit
+        </Link>
+      </div>
     </>
   );
 };

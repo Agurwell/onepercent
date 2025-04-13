@@ -1,42 +1,105 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Globe, Rocket, BarChart3, MousePointerClick, Gauge, Brain } from 'lucide-react';
+import {
+  ArrowRight,
+  Globe,
+  Rocket,
+  BarChart3,
+  MousePointerClick,
+  Gauge,
+  Brain
+} from 'lucide-react';
 import CTASection from '../components/CTASection';
 
+interface ServiceSectionProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+  details: string[];
+  image: string;
+}
+
 const ServicesPage: React.FC = () => {
-  const fadeIn = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 0.6 }
-    }
+  const ServiceSection: React.FC<ServiceSectionProps> = ({
+    icon,
+    title,
+    description,
+    details,
+    image
+  }) => {
+    return (
+      <section className="py-12 bg-one-dark text-white">
+        <div className="container-custom">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <motion.div
+              className="rounded-xl overflow-hidden h-[400px] lg:h-[500px] order-first"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
+              variants={{
+                hidden: { opacity: 0, scale: 0.95 },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  transition: { duration: 0.8, ease: 'easeOut' }
+                }
+              }}
+            >
+              <img
+                src={image}
+                alt={title}
+                className="w-full h-full object-cover rounded-2xl shadow-lg"
+                loading="lazy"
+              />
+            </motion.div>
+
+            <motion.div
+              className="bg-gradient-to-br from-purple-700/30 to-pink-500/30 p-6 rounded-xl shadow-lg ring-1 ring-white/10"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-100px' }}
+              variants={{
+                hidden: { opacity: 0, x: -50 },
+                visible: {
+                  opacity: 1,
+                  x: 0,
+                  transition: { duration: 0.6 }
+                }
+              }}
+            >
+              <div className="mb-4">{icon}</div>
+              <h2 className="heading-lg mb-4 text-white">{title}</h2>
+              <p className="text-xl mb-6 text-white/80">{description}</p>
+              <ul className="space-y-3 mb-4">
+                {details.map((detail, index) => (
+                  <li key={index} className="flex items-start">
+                    <span className="bg-one-green/20 rounded-full p-1 mr-3 mt-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-white" viewBox="0 0 20 20" fill="currentColor">
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                    <span>{detail}</span>
+                  </li>
+                ))}
+              </ul>
+              <Link to="/contact" className="inline-flex items-center font-bold hover:text-one-blue transition-colors">
+                Discuss your project <ArrowRight size={16} className="ml-2" />
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+    );
   };
 
   return (
     <>
-      {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-one-light">
-        <div className="container-custom">
-          <motion.div 
-            className="max-w-4xl mx-auto text-center"
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-          >
-            <h1 className="heading-xl mb-6">
-              Services that <span className="gradient-text">deliver</span>
-            </h1>
-            <p className="text-xl mb-8 text-gray-700 max-w-3xl mx-auto">
-              From website development to growth strategy, we offer everything a small service business needs to scale with purpose. No fluff, just results.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Website Development Section */}
-      <ServiceSection 
+      <ServiceSection
         icon={<Globe size={36} className="text-one-blue" />}
         title="Website Development & Maintenance"
         description="Your 24/7 sales rep. Fast, modern, mobile-first. Built to convert."
@@ -47,12 +110,10 @@ const ServicesPage: React.FC = () => {
           "Built with growth in mind, easily scalable as your business evolves",
           "Ongoing maintenance and support to keep your digital presence running smoothly"
         ]}
-        image="https://i.imgur.com/5xdZyKf.jpeg"
-        reverse={false}
+        image="/images/servicecenter.jpg"
       />
 
-      {/* SEO Section */}
-      <ServiceSection 
+      <ServiceSection
         icon={<Rocket size={36} className="text-one-blue" />}
         title="SEO & Digital Marketing"
         description="Every $1 in SEO returns $22. We get you found—and chosen."
@@ -63,12 +124,10 @@ const ServicesPage: React.FC = () => {
           "Technical SEO improvements that boost your site's visibility to search engines",
           "Regular reporting that shows real progress, not vanity metrics"
         ]}
-        image="https://i.imgur.com/bz3AwZs_d.jpeg?maxwidth=520&shape=thumb&fidelity=high"
-        reverse={true}
+        image="/images/pinknpurpphone.jpg"
       />
 
-      {/* Social Media Section */}
-      <ServiceSection 
+      <ServiceSection
         icon={<BarChart3 size={36} className="text-one-blue" />}
         title="Social Media & Paid Ads"
         description="Be in the feed or be forgotten. We run ROI-focused campaigns that actually work."
@@ -79,12 +138,10 @@ const ServicesPage: React.FC = () => {
           "ROI-focused approach ensuring every dollar spent brings measurable returns",
           "Regular optimization based on performance data, not guesswork"
         ]}
-        image="https://i.imgur.com/Qhn3IqG.jpeg"
-        reverse={false}
+        image="/images/pinkmonitor.jpg"
       />
 
-      {/* Google Optimization Section */}
-      <ServiceSection 
+      <ServiceSection
         icon={<MousePointerClick size={36} className="text-one-blue" />}
         title="Google Optimization & Review Strategy"
         description="70% more likely to visit. 50% more likely to buy. We make your Google presence untouchable."
@@ -95,12 +152,10 @@ const ServicesPage: React.FC = () => {
           "Local citation building that strengthens your presence across the web",
           "Google Analytics setup and monitoring to track real-world results"
         ]}
-        image="https://i.imgur.com/xnAQpnK.jpeg"
-        reverse={true}
+        image="/images/nothingtoseehere..jpg"
       />
 
-      {/* Automation Section */}
-      <ServiceSection 
+      <ServiceSection
         icon={<Gauge size={36} className="text-one-blue" />}
         title="Automation & Systems Integration"
         description="Stop wasting time. Automate the grind and scale smart."
@@ -111,12 +166,10 @@ const ServicesPage: React.FC = () => {
           "Workflow optimization that saves hundreds of hours annually",
           "Custom automation solutions tailored to your specific business needs"
         ]}
-        image="https://i.imgur.com/xsjSei9.jpeg"
-        reverse={false}
+        image="/images/gradkey.jpg"
       />
 
-      {/* Growth Advising Section */}
-      <ServiceSection 
+      <ServiceSection
         icon={<Brain size={36} className="text-one-blue" />}
         title="Growth Advising & Coaching"
         description="No fluff. Just clarity, direction, and results."
@@ -127,99 +180,24 @@ const ServicesPage: React.FC = () => {
           "Market analysis and competitive positioning to help you stand out",
           "Accountability and support to ensure you execute on your vision"
         ]}
-        image="https://i.imgur.com/KvR3aGq.jpeg"
-        reverse={true}
+        image="/images/greenpurpmeet.jpg"
       />
 
-      {/* CTA Section */}
-      <CTASection 
+<CTASection
         title="Ready to transform your business?"
         subtitle="Let's talk about how our services can be tailored to your specific needs and goals."
       />
-    </>
-  );
-};
 
-interface ServiceSectionProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  details: string[];
-  image: string;
-  reverse: boolean;
-}
-
-const ServiceSection: React.FC<ServiceSectionProps> = ({ 
-  icon, 
-  title, 
-  description, 
-  details, 
-  image, 
-  reverse 
-}) => {
-  return (
-    <section className="py-20 bg-white">
-      <div className="container-custom">
-        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${reverse ? 'lg:flex-row-reverse' : ''}`}>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              hidden: { opacity: 0, x: reverse ? 50 : -50 },
-              visible: { 
-                opacity: 1, 
-                x: 0,
-                transition: { duration: 0.6 }
-              }
-            }}
-          >
-            <div className="mb-4">{icon}</div>
-            <h2 className="heading-lg mb-4">{title}</h2>
-            <p className="text-xl mb-6 text-gray-700">{description}</p>
-            <ul className="space-y-3 mb-8">
-              {details.map((detail, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="bg-one-green/20 rounded-full p-1 mr-3 mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-one-dark" viewBox="0 0 20 20" fill="currentColor">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                  </span>
-                  <span>{detail}</span>
-                </li>
-              ))}
-            </ul>
-            <Link 
-              to="/contact" 
-              className="inline-flex items-center font-bold hover:text-one-blue transition-colors"
-            >
-              Discuss your project <ArrowRight size={16} className="ml-2" />
-            </Link>
-          </motion.div>
-          <motion.div
-            className={`rounded-xl overflow-hidden h-[400px] lg:h-[500px] ${reverse ? 'lg:order-first' : 'order-first lg:order-last'}`}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              hidden: { opacity: 0, x: reverse ? -50 : 50 },
-              visible: { 
-                opacity: 1, 
-                x: 0,
-                transition: { duration: 0.6 }
-              }
-            }}
-          >
-            <img 
-              src={image} 
-              alt={title} 
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </motion.div>
-        </div>
+      {/* Sticky CTA */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <Link
+          to="/contact"
+          className="bg-one-blue hover:bg-one-blue/80 text-white text-sm font-semibold px-5 py-3 rounded-full shadow-lg transition-all"
+        >
+          Receive a Free Website Audit
+        </Link>
       </div>
-    </section>
+    </>
   );
 };
 

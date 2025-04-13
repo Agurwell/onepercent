@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, Link } from 'lucide-react';
 import CTASection from '../components/CTASection';
 
 const FaqPage: React.FC = () => {
@@ -26,26 +26,35 @@ const FaqPage: React.FC = () => {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-one-light">
-        <div className="container-custom">
-          <motion.div 
-            className="max-w-4xl mx-auto text-center"
+      <section
+        className="pt-32 pb-16 md:pt-40 md:pb-20 relative bg-black text-white"
+        style={{
+          backgroundImage: "url('/images/oneland.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-transparent z-0" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-t from-black/60 to-transparent z-0" />
+        <div className="relative z-10 container-custom text-center">
+          <motion.div
             initial="hidden"
             animate="visible"
             variants={fadeIn}
           >
             <h1 className="heading-xl mb-6">
-              FAQ + <span className="gradient-text">Stats</span>
+              About <span className="gradient-text">One</span>
             </h1>
-            <p className="text-xl mb-8 text-gray-700 max-w-3xl mx-auto">
-              Answers to common questions and data-backed insights to help you make informed decisions.
+            <p className="text-xl mb-8 text-white/80 max-w-3xl mx-auto">
+              No certifications, no corporate talk. Just strategy, systems, and execution that work.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-one-dark text-white">
         <div className="container-custom">
           <motion.div
             className="text-center max-w-3xl mx-auto mb-16"
@@ -54,8 +63,8 @@ const FaqPage: React.FC = () => {
             viewport={{ once: true }}
             variants={fadeIn}
           >
-            <h2 className="heading-lg mb-4">The Numbers Don't Lie</h2>
-            <p className="text-lg text-gray-700">
+            <h2 className="heading-lg mb-4 text-cyan-400">The Numbers Don't Lie</h2>
+            <p className="text-lg text-white/80">
               Hard data on why digital strategy matters for local service businesses.
             </p>
           </motion.div>
@@ -104,7 +113,7 @@ const FaqPage: React.FC = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-one-light">
+      <section className="py-20 bg-one-dark text-white">
         <div className="container-custom">
           <motion.div
             className="text-center max-w-3xl mx-auto mb-16"
@@ -113,8 +122,8 @@ const FaqPage: React.FC = () => {
             viewport={{ once: true }}
             variants={fadeIn}
           >
-            <h2 className="heading-lg mb-4">Frequently Asked Questions</h2>
-            <p className="text-lg text-gray-700">
+            <h2 className="heading-lg mb-4 text-cyan-400">Frequently Asked Questions</h2>
+            <p className="text-lg text-white/80">
               Clear answers to your most pressing questions about growth and digital strategy.
             </p>
           </motion.div>
@@ -154,11 +163,20 @@ const FaqPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <CTASection 
-        title="Ready to stop guessing and start growing?"
-        subtitle="Let's talk strategy. We'll help you cut through the noise and focus on what actually works for your business."
+      <CTASection
+        title="Ready to transform your business?"
+        subtitle="Let's talk about how our services can be tailored to your specific needs and goals."
       />
+
+      {/* Sticky CTA */}
+      <div className="fixed bottom-4 right-4 z-50">
+        <Link
+          to="/contact"
+          className="bg-one-blue hover:bg-one-blue/80 text-white text-sm font-semibold px-5 py-3 rounded-full shadow-lg transition-all"
+        >
+          Receive a Free Website Audit
+        </Link>
+      </div>
     </>
   );
 };
@@ -171,7 +189,7 @@ interface StatCardProps {
 const StatCard: React.FC<StatCardProps> = ({ stat, description }) => {
   return (
     <motion.div 
-      className="bg-white p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-4"
+      className="bg-gradient-to-br from-purple-700/30 to-pink-500/30 text-white p-8 rounded-xl shadow-lg flex flex-col md:flex-row items-center gap-4 ring-1 ring-white/10"
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: { 
@@ -182,9 +200,9 @@ const StatCard: React.FC<StatCardProps> = ({ stat, description }) => {
       }}
     >
       <div className="min-w-max">
-        <p className="text-4xl font-black gradient-text">{stat}</p>
+        <p className="text-4xl font-black text-cyan-400 tracking-wide uppercase">{stat}</p>
       </div>
-      <p className="text-gray-700 text-center md:text-left">{description}</p>
+      <p className="text-white/80 text-center md:text-left">{description}</p>
     </motion.div>
   );
 };
@@ -199,7 +217,7 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
 
   return (
     <motion.div 
-      className="mb-6 border-b border-gray-200 pb-6"
+      className="mb-6 bg-gradient-to-br from-purple-700/30 to-pink-500/30 text-white p-6 rounded-xl shadow-lg ring-1 ring-white/10"
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: { 
@@ -213,12 +231,12 @@ const FaqItem: React.FC<FaqItemProps> = ({ question, answer }) => {
         className="flex justify-between items-center w-full text-left"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <h3 className="text-xl font-bold">{question}</h3>
+        <h3 className="text-xl font-bold text-cyan-400">{question}</h3>
         {isOpen ? <ChevronUp className="flex-shrink-0" /> : <ChevronDown className="flex-shrink-0" />}
       </button>
       {isOpen && (
         <div className="mt-4">
-          <p className="text-gray-700">{answer}</p>
+          <p className="text-white/80">{answer}</p>
         </div>
       )}
     </motion.div>
